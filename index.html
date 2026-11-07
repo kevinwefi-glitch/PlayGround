@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#090d0d" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23090d0d'/%3E%3Cpath d='M13 13h20c12 0 17 13 7 19 13 5 7 19-5 19H13zm10 9v8h8c5 0 5-8 0-8zm0 16v8h10c5 0 5-8 0-8z' fill='%23d4ef76'/%3E%3C/svg%3E" />
+  <title>BLACKWATER — Night Shift</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game" aria-label="3D survival horror game"></canvas>
+    <div class="film-grain"></div>
+    <div class="vignette"></div>
+
+    <section id="title-screen" class="screen visible">
+      <div class="title-top"><span class="brand-mark">BW<span>•</span></span><span class="file-label">FIELD REPORT / 07.14.98</span></div>
+      <div class="title-content">
+        <p class="eyebrow"><i></i> BLACKWATER COUNTY — RESTRICTED ZONE</p>
+        <h1>NIGHT<br><em>SHIFT</em></h1>
+        <p class="title-copy">The power is out. Something is moving in the trees.<br>Find the cells. Get to the gate. Don't let it get close.</p>
+        <button id="start-button" class="primary-button">ENTER THE DARK <span>↗</span></button>
+        <p class="control-hint">WASD / ARROWS TO MOVE <b>·</b> MOUSE TO AIM <b>·</b> SPACE TO FIRE</p>
+      </div>
+      <div class="title-bottom"><span>INCIDENT 09—B</span><span>NO CONTACT SINCE 02:16 AM</span></div>
+    </section>
+
+    <section id="hud" class="hud hidden" aria-live="polite">
+      <div class="hud-top">
+        <div class="mission-card"><span class="micro-label">CURRENT OBJECTIVE</span><strong id="objective">RESTORE THE GATE</strong><span id="objective-sub">Find 3 power cells in the woods</span></div>
+        <div class="status-card"><div class="status-line"><span class="micro-label">VITALS</span><span id="health-value">100%</span></div><div class="meter"><i id="health-meter"></i></div></div>
+        <div class="ammo-card"><span class="micro-label">SERVICE PISTOL</span><strong><span id="ammo-value">12</span><small> / 48</small></strong><span id="reload-label">9MM · SEMI</span></div>
+      </div>
+      <div class="hud-bottom">
+        <div class="cell-card"><span class="cell-icon">▣</span><span><b id="cell-count">0</b><small> / 3 CELLS</small></span></div>
+        <div class="center-message" id="center-message"></div>
+        <div class="flash-card"><span class="flash-icon">⌁</span><span class="micro-label">LIGHT</span><div class="meter slim"><i id="flash-meter"></i></div><span id="flash-value">100%</span></div>
+      </div>
+      <div class="crosshair"><i></i><b></b></div>
+    </section>
+
+    <div id="damage-flash"></div>
+    <div id="interact-prompt" class="interact-prompt hidden">HOLD <b>E</b> TO OPEN GATE</div>
+
+    <div id="touch-controls" class="touch-controls hidden">
+      <div id="joystick" class="joystick"><div class="joy-ring"></div><div id="joy-knob" class="joy-knob"></div><span>MOVE</span></div>
+      <div class="touch-actions"><button id="touch-reload" class="action-button">↻<small>RELOAD</small></button><button id="touch-light" class="action-button">◉<small>LIGHT</small></button><button id="touch-fire" class="fire-button"><i>✦</i><small>FIRE</small></button></div>
+    </div>
+
+    <section id="end-screen" class="screen hidden">
+      <div class="title-top"><span class="brand-mark">BW<span>•</span></span><span class="file-label">FIELD REPORT / CLOSED</span></div>
+      <div class="end-content"><p class="eyebrow"><i></i> <span id="end-kicker">BLACKWATER COUNTY</span></p><h2 id="end-title">YOU MADE IT.</h2><p id="end-copy">The gate groans shut behind you.</p><button id="restart-button" class="primary-button">PLAY AGAIN <span>↗</span></button></div>
+      <div class="title-bottom"><span id="end-stats">CELLS RECOVERED: 0/3</span><span>THE NIGHT ISN'T OVER</span></div>
+    </section>
+    <button id="sound-button" class="sound-button" aria-label="Toggle sound">♫ <span>SOUND ON</span></button>
+    <div id="toast" class="toast"></div>
+  </main>
+  <script type="module" src="./game.js"></script>
+</body>
+</html>
